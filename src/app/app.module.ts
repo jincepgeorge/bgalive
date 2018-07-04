@@ -23,6 +23,9 @@ import { environment } from '../environments/environment';
 
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { DetailComponent } from './components/detail/detail.component';
+import { ContentManagerComponent } from './components/content-manager/content-manager.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -38,14 +41,17 @@ import { DetailComponent } from './components/detail/detail.component';
     MinistriesComponent,
     ContactComponent,
     SidebarContentComponent,
-    DetailComponent
+    DetailComponent,
+    ContentManagerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
-    Ng4LoadingSpinnerModule.forRoot()
+    Ng4LoadingSpinnerModule.forRoot(),
+    NgbModule.forRoot(),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

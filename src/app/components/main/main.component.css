@@ -4,3 +4,11 @@
 .seremon-list img{
     width: 50px;
 }
+.seremon-list{
+    height: 250px;
+    overflow: auto;
+}
+.event-list{
+    height: 250px;
+    overflow: auto;
+}

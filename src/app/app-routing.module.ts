@@ -10,6 +10,8 @@ import { GalleryComponent } from './components/gallery/gallery.component';
 import { MinistriesComponent } from './components/ministries/ministries.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { DetailComponent } from './components/detail/detail.component';
+import { ContentManagerComponent } from './components/content-manager/content-manager.component';
+
 const routes: Routes = [
   
     {
@@ -50,6 +52,10 @@ const routes: Routes = [
           {
             path:'detail/:id',
             component: DetailComponent,
+          },
+          {
+            path:'manage',
+            component: ContentManagerComponent,
           },
       ]
     },
