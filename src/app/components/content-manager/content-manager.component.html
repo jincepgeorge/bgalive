@@ -1,339 +1,482 @@
 <div class="page-head" style="background-image: url('assets/images/page-head-1.jpg');">
-  <div class="container">
+    <div class="container">
     <h2 class="page-title">Manage Content</h2>
-  </div>
-</div>
-<div class="container fullwidth-block">
-    <div class="row text-center">
-        <div class="col-md-12">
-<div ngbDropdown class="d-inline-block">
-  <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>{{selectedItem}}</button>
-  <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-    <button (click)="selectType($event)"  class="dropdown-item">Board members</button>
-    <button (click)="selectType($event)"   class="dropdown-item">News</button>
-    <button (click)="selectType($event)"  class="dropdown-item">Sermons</button>
-    <button (click)="selectType($event)"   class="dropdown-item">Upcoming Events</button>
-  </div>
-</div></div>
-
-</div>
-
-
-<div class="board-members" [hidden]="selectedItem!='Board members'" >
-  <form class="form-horizontal" role="form" method="POST" action="/register">
+    </div>
+   </div>
+   <div class="container fullwidth-block">
+    <div class="row container text-center">
+    <div class="col-md-12">
+    <div class="selectWrapper">
+    <select (change)="selectType($event.target.value)">
+    <option >Select</option>
+    <option >Board members</option>
+    <option >News</option>
+    <option >Sermons</option>
+    <option >Upcoming Events</option>
+    </select>
+    </div> 
+   </div>
+   
+   </div>
+   
+   <div class="container">
+   <div class="board-members" [hidden]="selectedItem!='Board members'">
+    <form class="form-horizontal" role="form" method="POST" action="/Save">
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <h2>Add Board Members</h2>
-            <hr>
-        </div>
+    <div class="col-md-3 col-xs-3"></div>
+    <div class="col-md-6 col-xs-6">
+    <h2>Add Board Members</h2>
+    <hr>
+    </div>
     </div>
     <div class="row">
-        <div class="col-md-3 field-label-responsive">
-            <label for="name">Name</label>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                    <input [(ngModel)]="boardMemberInfo.b_name" type="text" name="name" class="form-control" id="name"
-                           placeholder="John Doe" required autofocus>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-control-feedback">
-                    <span class="text-danger align-middle">
-                        <!-- Put name validation error messages here -->
-                    </span>
-            </div>
-        </div>
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="name">Name</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+    <input [(ngModel)]="boardMemberInfo.name" type="text" name="name" class="form-control" id="name"
+    placeholder="John Doe" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put name validation error messages here -->
+    </span>
+    </div>
+    </div>
     </div>
     <div class="row">
-        <div class="col-md-3 field-label-responsive">
-            <label for="email">E-Mail Address</label>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                    <input [(ngModel)]="boardMemberInfo.b_email" type="text" name="email" class="form-control" id="email"
-                           placeholder="you@example.com" required autofocus>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-3">
-            <div class="form-control-feedback">
-                    <span class="text-danger align-middle">
-                        <!-- Put e-mail validation error messages here -->
-                    </span>
-            </div>
-        </div>
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="email">E-Mail Address</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+    <input [(ngModel)]="boardMemberInfo.email" type="text" name="email" class="form-control" id="email"
+    placeholder="you@example.com" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put e-mail validation error messages here -->
+    </span>
+    </div>
+    </div>
     </div>
     <div class="row">
-        <div class="col-md-3 field-label-responsive">
-            <label for="password">Position</label>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group has-danger">
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-graduation-cap"></i></div>
-                    <input [(ngModel)]="boardMemberInfo.b_position" name="position" class="form-control" id="position"
-                           placeholder="position" required>
-                </div>
-            </div>
-        </div>
-       
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="password">Position</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group has-danger">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-graduation-cap"></i></div>
+    <input [(ngModel)]="boardMemberInfo.position" name="position" class="form-control" id="position"
+    placeholder="position" required>
+    </div>
+    </div>
+    </div>
+    
     </div>
     <div class="row">
-        <div class="col-md-3 field-label-responsive">
-            <label for="password">Phone</label>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div class="input-group-addon" style="width: 2.6rem">
-                        <i class="fa fa-phone"></i>
-                    </div>
-                    <input [(ngModel)]="boardMemberInfo.b_phone" name="phone" class="form-control"
-                           id="phone" placeholder="phone" required>
-                </div>
-            </div>
-        </div>
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="password">Phone</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem">
+    <i class="fa fa-phone"></i>
+    </div>
+    <input [(ngModel)]="boardMemberInfo.phone" name="phone" class="form-control"
+    id="phone" placeholder="phone" required>
+    </div>
+    </div>
+    </div>
     </div>
     <div class="row">
-        <div class="col-md-3 field-label-responsive">
-            <label for="password">Photo</label>
-        </div>
-        <div class="col-md-6">
-            <div class="form-group">
-                <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                    <div class="input-group-addon" style="width: 2.6rem">
-                        <i class="fa fa-photo"></i>
-                    </div>
-                    <input [(ngModel)]="boardMemberInfo.b_photo" name="photo" class="form-control"
-                           id="photo" placeholder="photo" required>
-                </div>
-            </div>
-        </div>
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="password">Priority</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem">
+    <i class="fa fa-phone"></i>
+    </div>
+    <input [(ngModel)]="boardMemberInfo.priority" type="number" name="priority" class="form-control"
+    id="priority" placeholder="priority" required>
+    </div>
+    </div>
+    </div>
     </div>
     <div class="row">
-        <div class="col-md-3"></div>
-        <div class="col-md-6">
-            <button type="submit" (click)="saveBoardMembers()" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
-        </div>
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="password">Photo</label>
     </div>
-</form>
-</div>
-
-<div class="sermons" [hidden]="selectedItem!='Sermons'" >
-    <form class="form-horizontal" role="form" method="POST" action="/register">
-      <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
-              <h2>Add Sermons</h2>
-              <hr>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-md-3 field-label-responsive">
-              <label for="name">Author</label>
-          </div>
-          <div class="col-md-6">
-              <div class="form-group">
-                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                      <input [(ngModel)]="sermonInfo.author" type="text" name="author" class="form-control" id="author"
-                             placeholder="Author" required autofocus>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-3">
-              <div class="form-control-feedback">
-                      <span class="text-danger align-middle">
-                          <!-- Put name validation error messages here -->
-                      </span>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-md-3 field-label-responsive">
-              <label for="name">Title</label>
-          </div>
-          <div class="col-md-6">
-              <div class="form-group">
-                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                      <input [(ngModel)]="sermonInfo.title" type="text" name="sermontitle" class="form-control" id="sermontitle"
-                             placeholder="Title" required autofocus>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-3">
-              <div class="form-control-feedback">
-                      <span class="text-danger align-middle">
-                          <!-- Put name validation error messages here -->
-                      </span>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-md-3 field-label-responsive">
-              <label for="email">Date</label>
-          </div>
-          <div class="col-md-6">
-              <div class="form-group">
-                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                      <input [(ngModel)]="sermonInfo.date" type="date" name="sermondate" class="form-control" id="sermondate"
-                             placeholder="you@example.com" required autofocus>
-                  </div>
-              </div>
-          </div>
-          <div class="col-md-3">
-              <div class="form-control-feedback">
-                      <span class="text-danger align-middle">
-                          <!-- Put e-mail validation error messages here -->
-                      </span>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-md-3 field-label-responsive">
-              <label for="password">Details</label>
-          </div>
-          <div class="col-md-6">
-              <div class="form-group has-danger">
-                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-graduation-cap"></i></div>
-                      <input [(ngModel)]="sermonInfo.details" name="sermondetails" class="form-control" id="sermondetails"
-                             placeholder="Details" required>
-                  </div>
-              </div>
-          </div>
-         
-      </div>
-      
-      <div class="row">
-          <div class="col-md-3 field-label-responsive">
-              <label for="password">Photo</label>
-          </div>
-          <div class="col-md-6">
-              <div class="form-group">
-                  <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                      <div class="input-group-addon" style="width: 2.6rem">
-                          <i class="fa fa-photo"></i>
-                      </div>
-                      <input [(ngModel)]="sermonInfo.photo" name="sermonphoto" class="form-control"
-                             id="sermonphoto" placeholder="photo" required>
-                  </div>
-              </div>
-          </div>
-      </div>
-      <div class="row">
-          <div class="col-md-3"></div>
-          <div class="col-md-6">
-              <button type="submit" (click)="saveSermons()" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
-          </div>
-      </div>
-  </form>
-  </div>
-
-  <div class="upcomingevents" [hidden]="selectedItem!='Upcoming Events'" >
-      <form class="form-horizontal" role="form" method="POST" action="/register">
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <h2>Add Upcoming Events</h2>
-                <hr>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="name">Title</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                        <input [(ngModel)]="upcomingEvents.title" type="text" name="upcomingeventsTitle" class="form-control" id="upcomingeventsTitle"
-                               placeholder="Title" required autofocus>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put name validation error messages here -->
-                        </span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="name">Location</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
-                        <input [(ngModel)]="upcomingEvents.location" type="text" name="upcomingeventsLocation" class="form-control" id="upcomingeventsLocation"
-                               placeholder="Location" required autofocus>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put name validation error messages here -->
-                        </span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="email">Date</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
-                        <input [(ngModel)]="upcomingEvents.date" type="date" name="upcomingEventsDate" class="form-control" id="upcomingEventsDate"
-                               placeholder="Date" required autofocus>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="form-control-feedback">
-                        <span class="text-danger align-middle">
-                            <!-- Put e-mail validation error messages here -->
-                        </span>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-3 field-label-responsive">
-                <label for="password">Details</label>
-            </div>
-            <div class="col-md-6">
-                <div class="form-group has-danger">
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-graduation-cap"></i></div>
-                        <input [(ngModel)]="upcomingEvents.details" name="upcomingEventsdetails" class="form-control" id="upcomingEventsdetails"
-                               placeholder="Details" required>
-                    </div>
-                </div>
-            </div>
-           
-        </div>
-        
-       
-        <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <button type="submit" (click)="saveUpcomingEvents()" class="btn btn-success"><i class="fa fa-user-plus"></i> Register</button>
-            </div>
-        </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem">
+    <i class="fa fa-photo"></i>
+    </div>
+    <input [(ngModel)]="boardMemberInfo.photo" name="photo" class="form-control"
+    id="photo" placeholder="photo" required>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3"></div>
+    <div class="col-md-6 col-xs-9">
+    <button type="submit" (click)="saveBoardMembers()" class="btn btn-success"><i class="fa fa-user-plus"></i> Save</button>
+    </div>
+    </div>
+   </form>
+   
+   <div class="container fullwidth-block">
+    <div class="list-group" *ngFor="let member of boardMembersList | async">
+    <a class="list-group-item clearfix">
+    <span class="glyphicon glyphicon-file"></span>
+    {{member.priority}}. {{member.name}}
+    <span class="pull-right">
+    <button (click)="editMember(member)" class="btn btn-xs btn-info">Edit</button>
+    <button class="btn btn-xs btn-info" (click)="deleteMember(member)" >Delete</button>
+    </span>
+    </a>
+    </div>
+    </div>
+   </div>
+   
+   <div class="sermons" [hidden]="selectedItem!='Sermons'" >
+    <form class="form-horizontal" role="form" method="POST" action="/Save">
+    <div class="row">
+    <div class="col-md-3 col-xs-3"></div>
+    <div class="col-md-6 col-xs-6">
+    <h2>Add Sermons</h2>
+    <hr>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="name">Author</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+    <input [(ngModel)]="sermonInfo.author" type="text" name="author" class="form-control" id="author"
+    placeholder="Author" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put name validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="name">Title</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+    <input [(ngModel)]="sermonInfo.title" type="text" name="sermontitle" class="form-control" id="sermontitle"
+    placeholder="Title" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put name validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="email">Date</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+    <input [(ngModel)]="sermonInfo.date" type="date" name="sermondate" class="form-control" id="sermondate"
+    placeholder="you@example.com" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put e-mail validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="password">Details</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group has-danger">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-graduation-cap"></i></div>
+    <input [(ngModel)]="sermonInfo.details" name="sermondetails" class="form-control" id="sermondetails"
+    placeholder="Details" required>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="password">Photo</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem">
+    <i class="fa fa-photo"></i>
+    </div>
+    <input [(ngModel)]="sermonInfo.photo" name="sermonphoto" class="form-control"
+    id="sermonphoto" placeholder="photo" required>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3"></div>
+    <div class="col-md-6 col-xs-9">
+    <button type="submit" (click)="saveSermons()" class="btn btn-success"><i class="fa fa-user-plus"></i> Save</button>
+    </div>
+    </div>
     </form>
     </div>
-</div>
+   
+    <div class="news" [hidden]="selectedItem!='News'" >
+    <form class="form-horizontal" role="form" method="POST" action="/Save">
+    <div class="row">
+    <div class="col-md-3 col-xs-3"></div>
+    <div class="col-md-6 col-xs-6">
+    <h2>Add News</h2>
+    <hr>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="name">Title</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+    <input [(ngModel)]="news.eventname" type="text" name="newsTitle" class="form-control" id="newsTitle"
+    placeholder="Title" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put name validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="name">Photo</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-image"></i></div>
+    <input [(ngModel)]="news.photo" type="text" name="newsPhoto" class="form-control" id="newsPhoto"
+    placeholder="Photo" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put name validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="email">Date</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+    <input [(ngModel)]="news.date" type="date" name="newsDate" class="form-control" id="newsDate"
+    placeholder="Date" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put e-mail validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="password">Details</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group has-danger">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-graduation-cap"></i></div>
+    <input [(ngModel)]="news.details" name="newsdetails" class="form-control" id="newsdetails"
+    placeholder="Details" required>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    
+    <div class="row">
+    <div class="col-md-3 col-xs-3"></div>
+    <div class="col-md-6 col-xs-9">
+    <button type="submit" (click)="saveNews()" class="btn btn-success"><i class="fa fa-user-plus"></i> Save</button>
+    </div>
+    </div>
+    </form>
+   
+    <div class="container fullwidth-block">
+    <div class="list-group" *ngFor="let news of newsList | async">
+    <a class="list-group-item clearfix">
+    <span class="glyphicon glyphicon-file"></span>
+    {{news.eventname}}
+    <span class="pull-right">
+    <button (click)="editNews(news)" class="btn btn-xs btn-info">Edit</button>
+    <button class="btn btn-xs btn-info" (click)="deleteNews(news)" >Delete</button>
+    </span>
+    </a>
+    </div>
+    </div>
+    </div>
+   
+    <div class="upcomingevents" [hidden]="selectedItem!='Upcoming Events'" >
+    <form class="form-horizontal" role="form" method="POST" action="/Save">
+    <div class="row">
+    <div class="col-md-3 col-xs-3"></div>
+    <div class="col-md-6 col-xs-6">
+    <h2>Add Upcoming Events</h2>
+    <hr>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="name">Title</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+    <input [(ngModel)]="upcomingEvents.title" type="text" name="upcomingeventsTitle" class="form-control" id="upcomingeventsTitle"
+    placeholder="Title" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put name validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="name">Location</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+    <input [(ngModel)]="upcomingEvents.location" type="text" name="upcomingeventsLocation" class="form-control" id="upcomingeventsLocation"
+    placeholder="Location" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put name validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="email">Date</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+    <input [(ngModel)]="upcomingEvents.date" type="date" name="upcomingEventsDate" class="form-control" id="upcomingEventsDate"
+    placeholder="Date" required autofocus>
+    </div>
+    </div>
+    </div>
+    <div class="col-md-3 col-xs-3">
+    <div class="form-control-feedback">
+    <span class="text-danger align-middle">
+    <!-- Put e-mail validation error messages here -->
+    </span>
+    </div>
+    </div>
+    </div>
+    <div class="row">
+    <div class="col-md-3 col-xs-3 field-label-responsive">
+    <label for="password">Details</label>
+    </div>
+    <div class="col-md-6 col-xs-9">
+    <div class="form-group has-danger">
+    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+    <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-graduation-cap"></i></div>
+    <input [(ngModel)]="upcomingEvents.details" name="upcomingEventsdetails" class="form-control" id="upcomingEventsdetails"
+    placeholder="Details" required>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    
+    
+    <div class="row">
+    <div class="col-md-3 col-xs-3"></div>
+    <div class="col-md-6 col-xs-9">
+    <button type="submit" (click)="saveUpcomingEvents()" class="btn btn-success"><i class="fa fa-user-plus"></i> Save</button>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+   </div>
+   
