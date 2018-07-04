@@ -1,0 +1,94 @@
+<div class="hero">
+    <div class="slides">
+        <li style="background-image:url(assets/images/slide-1@2x.jpg)">
+            <div class="container">
+                <div class="slide-content">
+                    
+                    <h2 class="slide-title">Bethel Gospel Assembly</h2>
+                    <small class="slide-subtitle">A divine place to worship God</small>
+
+                    <a routerLink="/dashboard/founders" class="button">See our families</a>
+                </div>
+            </div>
+        </li>
+
+        <li style="background-image:url(assets/images/slide-1@2x.jpg)">
+            <div class="container">
+                <div class="slide-content">
+                
+                    <h2 class="slide-title">Bethel Gospel Assembly</h2>
+                    <small class="slide-subtitle">A divine place to worship God</small>
+
+                    <a routerLink="/dashboard/founders" class="button">See our families</a>
+                </div>
+            </div>
+        </li>
+    </div>
+</div>
+
+<main class="main-content">
+    <div class="fullwidth-block">
+        <div class="container">
+            <h2 class="section-title">Recent news</h2>
+
+            <div class="row">
+                <div class="col-md-3 col-sm-6"  *ngFor="let item of news | async">
+                    <div class="news">
+                        <div [ngStyle]="{'background-image': 'url(assets/images/' + item.photo + ')'}" class="news-img"></div>
+<!--									<image class="news-image" src="assets/images/slide-2.jpg"></image>-->
+                        <h3 class="news-title"><a href="#">{{item.eventname}}</a></h3>
+                        <small class="date"><i class="fa fa-calendar"></i>{{item.date}}</small>
+                    </div>
+                </div>
+               
+            </div> <!-- .row -->
+        </div> <!-- .container -->
+    </div> <!-- section -->
+
+    <div class="fullwidth-block">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <h2 class="section-title">Upcoming events</h2>
+                    <ul class="event-list">
+                        <li *ngFor="let event of upcomingevents | async">
+                            <a href="#">
+                                <h3 class="event-title">{{event.title}}</h3>
+                                <span class="event-meta">
+                                    <span><i class="fa fa-calendar"></i>{{event.date}}</span>
+                                    <span><i class="fa fa-map-marker"></i> {{event.location}}</span>
+
+                                </span>
+                            </a>
+                        </li>
+                       
+                    </ul>
+
+                    <div class="text-center">
+                        <a routerLink="/dashboard/news" class="button">See all events</a>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h2 class="section-title">Latest seremons</h2>
+                    <ul class="seremon-list">
+                        <li *ngFor="let sermon of sermons | async">
+                            <img src="assets/images/{{sermon.photo}}" alt="">
+                            <div class="seremon-detail">
+                                <h3 class="seremon-title"><a routerLink="/dashboard/detail/{{sermon.sermonid}}">{{sermon.title}}</a></h3>
+                                <div class="seremon-meta">
+                                    <div class="pastor"><i class="fa fa-user"></i> {{sermon.author}}</div>
+                                    <div class="date"><i class="fa fa-calendar"></i> {{sermon.date}}</div>
+                                </div>
+                            </div>
+                        </li>
+                       
+                    </ul>
+
+                    <div class="text-center">
+                        <a href="#" class="button">See all seremons</a>
+                    </div>
+                </div>
+            </div> <!-- .row -->
+        </div> <!-- .container -->
+    </div> <!-- section -->
+</main> <!-- .main-content -->

@@ -1,0 +1,29 @@
+<header class="site-header">
+  <div class="row">
+      <div class="content col-md-2 col-xs-3 text-center">
+      <a href="#" class="branding">
+<img src="assets/images/logo.jpg" alt="" class="logo img-responsive">
+<h1 class="site-title">Bethel Gospel Assembly</h1>
+</a></div>
+       <div class="content col-md-10 col-xs-9  text-right">
+        <div class="main-navigation">
+<button class="menu-toggle"><i class="fa fa-bars"></i> Menu</button>
+<ul class="menu" #menu>
+<li class="menu-item " [ngClass]="{'current-menu-item': selectedItem == 'home'}" (click)="listClick($event, 'home')"><a routerLink="/dashboard">Home </a></li>
+<li class="menu-item" [ngClass]="{'current-menu-item': selectedItem == 'founders'}" (click)="listClick($event, 'founders')"><a routerLink="/dashboard/founders">Founders </a></li>
+              <li class="menu-item" [ngClass]="{'current-menu-item': selectedItem == 'board'}" (click)="listClick($event, 'board')"><a routerLink="/dashboard/board">Board </a></li>
+<li class="menu-item" [ngClass]="{'current-menu-item': selectedItem == 'ministries'}" (click)="listClick($event, 'ministries')"><a routerLink="/dashboard/ministries">Ministries</a></li>
+<li class="menu-item" [ngClass]="{'current-menu-item': selectedItem == 'news'}" (click)="listClick($event, 'news')"><a routerLink="/dashboard/news">Events </a></li>
+<li class="menu-item" [ngClass]="{'current-menu-item': selectedItem == 'gallery'}" (click)="listClick($event, 'gallery')"><a routerLink="/dashboard/gallery">Gallery </a></li>
+<li class="menu-item" [ngClass]="{'current-menu-item': selectedItem == 'contact'}" (click)="listClick($event, 'contact')"><a routerLink="/dashboard/contact">Contact </a></li>
+</ul>
+</div></div>
+  </div>
+<div class="container">
+
+
+
+
+<div class="mobile-navigation" #menuContainer></div>
+</div>
+</header> <!-- .site-header -->

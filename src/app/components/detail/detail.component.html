@@ -1,0 +1,35 @@
+<div  *ngFor="let item of sermon | async">
+<div class="page-head" style="background-image: url('assets/images/page-head-1.jpg');">
+  <div class="container">
+    <h2 class="page-title">{{item.title}}</h2>
+  </div>
+</div>
+
+<main class="main-content">
+  <div class="fullwidth-block">
+    <div class="container">
+                    <h2 [hidden]="!item.author" class="section-title">{{item.author}}</h2>
+      <div class="row">
+                      <div class="content col-md-5">
+                        <img src="assets/images/{{item.photo}}" alt="" class="founder-img"></div>
+        <div class="content col-md-7">
+        
+          <ul class="seremon-list large">
+            <li>
+            
+              <div class="seremon-detail">
+                 
+                <p innerHTML="{{item.details}}"></p> </div>
+            </li>
+            
+          </ul>
+
+          
+        </div>
+      
+      </div>
+    </div>
+              
+  </div>
+</main> <!-- .main-content -->
+</div>
