@@ -24,7 +24,7 @@ import { environment } from '../environments/environment';
 import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { DetailComponent } from './components/detail/detail.component';
 import { ContentManagerComponent } from './components/content-manager/content-manager.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+// import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
@@ -50,7 +50,7 @@ import { FormsModule } from '@angular/forms';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule,
     Ng4LoadingSpinnerModule.forRoot(),
-    NgbModule.forRoot(),
+    // NgbModule.forRoot(),
     FormsModule
   ],
   providers: [],
