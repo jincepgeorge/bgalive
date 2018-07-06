@@ -18,6 +18,7 @@ import { SidebarContentComponent } from './components/sidebar-content/sidebar-co
 
 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 
@@ -26,6 +27,8 @@ import { DetailComponent } from './components/detail/detail.component';
 import { ContentManagerComponent } from './components/content-manager/content-manager.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { UploadService } from './services/upload.service';
+import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -51,9 +54,11 @@ import { FormsModule } from '@angular/forms';
     AngularFirestoreModule,
     Ng4LoadingSpinnerModule.forRoot(),
     // NgbModule.forRoot(),
-    FormsModule
+    FormsModule,
+    AngularFireStorageModule
   ],
-  providers: [],
+  providers: [UploadService,
+    MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

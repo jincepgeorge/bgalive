@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFirestore,AngularFirestoreCollection  } from 'angularfire2/firestore';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
+import { map } from 'rxjs/operators/map';
 
 @Component({
   selector: 'app-content-manager',
@@ -9,6 +11,13 @@ import { Observable } from 'rxjs/Observable';
 })
 export class ContentManagerComponent implements OnInit {
 
+  ref: AngularFireStorageReference;
+  task: AngularFireUploadTask;
+  uploadState: Observable<string>;
+  uploadProgress: Observable<number>;
+  downloadURL: Observable<string>;
+  downloadSrc;
+  uploadCntrl:any;
     boardMembers: AngularFirestoreCollection<any> = this.db.collection('boardmembers');
     sermons: AngularFirestoreCollection<any> = this.db.collection('sermons');
     upcomingEventsCollection: AngularFirestoreCollection<any> = this.db.collection('upcomingevents');
@@ -21,7 +30,10 @@ export class ContentManagerComponent implements OnInit {
   sermonInfo:any={};
   news:any={};
   upcomingEvents:any={};
-  constructor(private db: AngularFirestore) {
+  uploadProgressValue:number=0;
+  constructor(private db: AngularFirestore,
+    private afStorage: AngularFireStorage
+    ) {
 
     this.boardMembersList = db.collection('/boardmembers',ref => ref.orderBy('priority')).valueChanges();
     this.newsList = db.collection('/events',ref => ref.orderBy('newsId')).valueChanges();
@@ -35,12 +47,28 @@ export class ContentManagerComponent implements OnInit {
     this.selectedItem=selectedItem;
   }
   saveBoardMembers(){
+
+    this.uploadImages();
+    
+
+    this.uploadProgress.subscribe(result => {
+      this.uploadProgressValue=result;
+    });
+    this.downloadURL.subscribe(result => {
+      
+      // this.messageService.sendMessage(result[0].clientname);
+       console.log(result);
+        this.boardMemberInfo.photo=result;
     console.log(this.boardMemberInfo);
     this.boardMembers.doc(this.boardMemberInfo.name).set( this.boardMemberInfo)
       .catch((err) => {
       console.log(err);
     })
+    this.boardMemberInfo={};
+      
+     });
 
+   
   }
   saveSermons(){
   
@@ -102,4 +130,18 @@ deleteNews(news){
   })
 }
 }
+uploadImage(event){
+  this.uploadCntrl=event;
+//this.upSvc.upload(event);
+//this.uploadImages(event);
+}
+uploadImages() {
+  const id = Math.random().toString(36).substring(2);
+  this.ref = this.afStorage.ref(id);
+  this.task = this.ref.put(this.uploadCntrl.target.files[0]);
+  this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
+  this.uploadProgress = this.task.percentageChanges();
+  this.downloadURL = this.task.downloadURL();
+}
+
 }

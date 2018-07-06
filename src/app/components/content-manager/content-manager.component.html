@@ -134,6 +134,33 @@
     </div>
     </div>
     </div>
+
+    <div class="row">
+        <div class="col-md-3 col-xs-3 field-label-responsive">
+        <label for="password">Upload Photo</label>
+        </div>
+        <div class="col-md-6 col-xs-9">
+        <div class="form-group">
+        <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+        <div class="input-group-addon" style="width: 2.6rem">
+        <i class="fa fa-photo"></i>
+        </div>
+        <input type="file" (change)="uploadImage($event)" accept=".png,.jpg" />
+       
+        </div>
+        </div>
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-md-9 col-xs-12 field-label-responsive">
+                    <div class="progress"  *ngIf="uploadProgress | async; let uploadProgressValue">
+                          <div class="progress-bar progress-bar-striped bg-success" role="progressbar" [style.width]="(uploadProgressValue) + '%'" [attr.aria-valuenow]="(uploadProgressValue)" aria-valuemin="0" aria-valuemax="100"></div>
+                          </div>
+                          <br>
+                          <!-- <div *ngIf="downloadURL | async; let downloadSrc" class="alert alert-info" role="alert">
+                              File uploaded: <a [href]="downloadSrc">{{downloadSrc}}</a>
+                          </div> -->
+            </div></div>    
     <div class="row">
     <div class="col-md-3 col-xs-3"></div>
     <div class="col-md-6 col-xs-9">

@@ -12,7 +12,7 @@
           <div class="row">
          
             <div class="family" *ngFor="let member of boardMembers | async">
-                <div [ngStyle]="{'background-image': 'url(assets/images/' + member.photo + ')'}"  class="news-img"></div>
+                <div [ngStyle]="{'background-image': 'url(' + member.photo + ')'}"  class="news-img"></div>
 <!--										<img src="assets/images/rajeev.jpg" alt="" class="family-image">-->
 <h3 class="family-name">{{member.name}}</h3>
 <small>{{member.position}}</small>
