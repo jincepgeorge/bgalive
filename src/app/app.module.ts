@@ -27,8 +27,6 @@ import { DetailComponent } from './components/detail/detail.component';
 import { ContentManagerComponent } from './components/content-manager/content-manager.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
-import { UploadService } from './services/upload.service';
-import { MessageService } from './services/message.service';
 
 @NgModule({
   declarations: [
@@ -57,8 +55,8 @@ import { MessageService } from './services/message.service';
     FormsModule,
     AngularFireStorageModule
   ],
-  providers: [UploadService,
-    MessageService],
+  providers: [
+    ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

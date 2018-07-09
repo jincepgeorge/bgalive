@@ -3,6 +3,7 @@ import { AngularFirestore,AngularFirestoreCollection  } from 'angularfire2/fires
 import { Observable } from 'rxjs/Observable';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from 'angularfire2/storage';
 import { map } from 'rxjs/operators/map';
+import { finalize } from 'rxjs/operators';
 
 @Component({
   selector: 'app-content-manager',
@@ -62,25 +63,7 @@ export class ContentManagerComponent implements OnInit {
     this.uploadProgress.subscribe(result => {
       this.uploadProgressValue=result;
     });
-    this.downloadURL.subscribe(result => {
-      
-      // this.messageService.sendMessage(result[0].clientname);
-       console.log(result);
-       switch(this.uploadCntrl.target.id){
-        case 'boardImageInput':
-        this.boardMemberInfo.photo=result;
-        this.saveBoardMembers();
-        break;
-        case 'sermonImageInput':
-        this.sermonInfo.photo=result;
-        this.saveSermons();
-        break;
-    
-      }
-
   
-      
-     });
   }
   saveSermons(){
   
@@ -154,7 +137,33 @@ uploadImages() {
   this.task = this.ref.put(this.uploadCntrl.target.files[0]);
   this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
   this.uploadProgress = this.task.percentageChanges();
-  this.downloadURL = this.task.downloadURL();
+  //this.downloadURL = this.task.downloadURL();
+
+  this.task.snapshotChanges().pipe(
+    finalize(() => {
+      this.downloadURL = this.ref.getDownloadURL()
+      this.downloadURL.subscribe(result => {
+      
+        // this.messageService.sendMessage(result[0].clientname);
+         console.log(result);
+         switch(this.uploadCntrl.target.id){
+          case 'boardImageInput':
+          this.boardMemberInfo.photo=result;
+          this.saveBoardMembers();
+          break;
+          case 'sermonImageInput':
+          this.sermonInfo.photo=result;
+          this.saveSermons();
+          break;
+      
+        }
+  
+    
+        
+       });
+    })
+  ).subscribe()
+  
 }
 readUrl(event:any) {
   if (event.target.files && event.target.files[0]) {
