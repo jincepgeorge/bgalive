@@ -18,6 +18,7 @@ export class ContentManagerComponent implements OnInit {
   downloadURL: Observable<string>;
   downloadSrc;
   uploadCntrl:any;
+  imageUrl:any;
     boardMembers: AngularFirestoreCollection<any> = this.db.collection('boardmembers');
     sermons: AngularFirestoreCollection<any> = this.db.collection('sermons');
     upcomingEventsCollection: AngularFirestoreCollection<any> = this.db.collection('upcomingevents');
@@ -48,8 +49,15 @@ export class ContentManagerComponent implements OnInit {
   }
   saveBoardMembers(){
 
+    this.boardMembers.doc(this.boardMemberInfo.name).set( this.boardMemberInfo)
+      .catch((err) => {
+      console.log(err);
+    })
+    this.boardMemberInfo={};
+   
+  }
+  uploadImageAndSaveData(){
     this.uploadImages();
-    
 
     this.uploadProgress.subscribe(result => {
       this.uploadProgressValue=result;
@@ -58,17 +66,21 @@ export class ContentManagerComponent implements OnInit {
       
       // this.messageService.sendMessage(result[0].clientname);
        console.log(result);
+       switch(this.uploadCntrl.target.id){
+        case 'boardImageInput':
         this.boardMemberInfo.photo=result;
-    console.log(this.boardMemberInfo);
-    this.boardMembers.doc(this.boardMemberInfo.name).set( this.boardMemberInfo)
-      .catch((err) => {
-      console.log(err);
-    })
-    this.boardMemberInfo={};
+        this.saveBoardMembers();
+        break;
+        case 'sermonImageInput':
+        this.sermonInfo.photo=result;
+        this.saveSermons();
+        break;
+    
+      }
+
+  
       
      });
-
-   
   }
   saveSermons(){
   
@@ -132,6 +144,7 @@ deleteNews(news){
 }
 uploadImage(event){
   this.uploadCntrl=event;
+  this.readUrl(event);
 //this.upSvc.upload(event);
 //this.uploadImages(event);
 }
@@ -142,6 +155,30 @@ uploadImages() {
   this.uploadState = this.task.snapshotChanges().pipe(map(s => s.state));
   this.uploadProgress = this.task.percentageChanges();
   this.downloadURL = this.task.downloadURL();
+}
+readUrl(event:any) {
+  if (event.target.files && event.target.files[0]) {
+    var reader = new FileReader();
+
+    reader.onload = (event:any) => {
+      this.imageUrl = event.target.result;
+      this.setImageUrlObj(event,this.imageUrl);
+      //this.boardMemberInfo.photo=this.imageUrl;
+    }
+
+    reader.readAsDataURL(event.target.files[0]);
+  }
+}
+setImageUrlObj(cntrl,imageUrl){
+  switch(cntrl.target.id){
+    case 'boardImageInput':
+    this.boardMemberInfo.photo=imageUrl;
+    break;
+    case 'sermonImageInput':
+    this.sermonInfo.photo=imageUrl;
+    break;
+
+  }
 }
 
 }

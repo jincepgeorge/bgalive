@@ -34,3 +34,12 @@
     .progress{
       width: 100%;
     }
+    .preview-img{
+     
+      width: 100px;
+      box-shadow: 10px 10px 5px #ccc;
+      -moz-box-shadow: 10px 10px 5px #ccc;
+      -webkit-box-shadow: 10px 10px 5px #ccc;
+      border-radius: 10px;
+  
+  }
