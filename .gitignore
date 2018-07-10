@@ -41,3 +41,17 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Node
+npm-debug.log
+/BGA/node_modules
+
+# Cordova
+/BGA/platforms
+/BGA/plugins
+
+# res
+resources/signing
+jsconfig.json
+.vscode/
+typings/

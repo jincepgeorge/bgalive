@@ -13,7 +13,7 @@ export class AppHeaderComponent implements OnInit {
     $(document).ready(function(){
 
       // Cloning main navigation for mobile menu
-      $(".mobile-navigation").append($(".main-navigation .menu").clone());
+     // $(".mobile-navigation").append($(".main-navigation .menu").clone());
   
       // Mobile menu toggle 
       $(".menu-toggle").click(function(){
@@ -27,6 +27,7 @@ export class AppHeaderComponent implements OnInit {
     console.log(newValue);
     this.selectedItem = newValue;  // don't forget to update the model here
     // ... do other stuff here ...
+    $(".mobile-navigation").slideToggle();
 }
 
 }
