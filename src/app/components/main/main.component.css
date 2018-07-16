@@ -12,3 +12,6 @@
     height: 250px;
     overflow: auto;
 }
+.news{
+    cursor: pointer;
+}

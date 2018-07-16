@@ -50,7 +50,7 @@ const routes: Routes = [
             component: ContactComponent,
           },
           {
-            path:'detail/:id',
+            path:'detail/:id/:pagename',
             component: DetailComponent,
           },
           {

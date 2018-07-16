@@ -1,17 +1,18 @@
-<div  *ngFor="let item of sermon | async">
+<div [hidden]="pageName!='sermon'"  *ngFor="let item of sermon | async">
 <div class="page-head" style="background-image: url('assets/images/page-head-1.jpg');">
   <div class="container">
-    <h2 class="page-title">{{item.title}}</h2>
+    <h2 class="page-title">Sermon</h2>
   </div>
 </div>
 
-<main class="main-content">
+<main class="main-content" > 
   <div class="fullwidth-block">
     <div class="container">
-                    <h2 [hidden]="!item.author" class="section-title">{{item.author}}</h2>
+        <h1 [hidden]="!item.title" class="section-title">{{item.title}}</h1>
+                    <h2 [hidden]="!item.author">Author: {{item.author}}</h2>
       <div class="row">
                       <div class="content col-md-2">
-                        <img src="assets/images/{{item.photo}}" alt="" class="founder-img"></div>
+                        <img src="{{item.photo}}" alt="" class="founder-img"></div>
         <div class="content col-md-10">
         
           <ul class="seremon-list large">
@@ -33,3 +34,35 @@
   </div>
 </main> <!-- .main-content -->
 </div>
+
+<div [hidden]="pageName!='news'"  *ngFor="let item of newsDetail | async">
+  <div class="page-head" style="background-image: url('assets/images/page-head-1.jpg');">
+    <div class="container">
+      <h2 class="page-title">News</h2>
+    </div>
+  </div>
+  
+  <main class="main-content" > 
+    <div class="fullwidth-block">
+      <div class="container">
+          <h1 [hidden]="!item.eventname" class="section-title">{{item.eventname}}</h1>
+        <div class="row">
+                        <div class="content col-md-6">
+                          <img src="assets/images/{{item.photo}}" alt="" class="founder-img"></div>
+          <div class="content col-md-6">
+          
+           
+                <div class="seremon-detail">
+                   
+                  <p innerHTML="{{item.details}}"></p> </div>
+           
+  
+            
+          </div>
+        
+        </div>
+      </div>
+                
+    </div>
+  </main> <!-- .main-content -->
+  </div>

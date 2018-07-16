@@ -27,10 +27,10 @@
 
             <div class="row">
                 <div class="col-md-3 col-sm-6"  *ngFor="let item of news | async">
-                    <div class="news">
+                    <div [routerLink]="['/dashboard/detail',item.newsId,'news']" class="news">
                         <div [ngStyle]="{'background-image': 'url(assets/images/' + item.photo + ')'}" class="news-img"></div>
 <!--									<image class="news-image" src="assets/images/slide-2.jpg"></image>-->
-                        <h3 class="news-title"><a href="#">{{item.eventname}}</a></h3>
+                        <h3 class="news-title"><a >{{item.eventname}}</a></h3>
                         <small class="date"><i class="fa fa-calendar"></i>{{item.date}}</small>
                     </div>
                 </div>
@@ -66,9 +66,9 @@
                     <h2 class="section-title">Latest seremons</h2>
                     <ul class="seremon-list">
                         <li *ngFor="let sermon of sermons | async">
-                            <img src="assets/images/{{sermon.photo}}" alt="">
+                            <img src="{{sermon.photo}}" alt="">
                             <div class="seremon-detail">
-                                <h3 class="seremon-title"><a routerLink="/dashboard/detail/{{sermon.sermonid}}">{{sermon.title}}</a></h3>
+                                <h3 class="seremon-title"><a [routerLink]="['/dashboard/detail',sermon.sermonid,'sermon']">{{sermon.title}}</a></h3>
                                 <div class="seremon-meta">
                                     <div class="pastor"><i class="fa fa-user"></i> {{sermon.author}}</div>
                                     <div class="date"><i class="fa fa-calendar"></i> {{sermon.date}}</div>

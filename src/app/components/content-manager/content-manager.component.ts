@@ -21,12 +21,13 @@ export class ContentManagerComponent implements OnInit {
   uploadCntrl:any;
   imageUrl:any;
     boardMembers: AngularFirestoreCollection<any> = this.db.collection('boardmembers');
-    sermons: AngularFirestoreCollection<any> = this.db.collection('sermons');
+    sermonsCollection: AngularFirestoreCollection<any> = this.db.collection('sermons');
     upcomingEventsCollection: AngularFirestoreCollection<any> = this.db.collection('upcomingevents');
     newsCollection: AngularFirestoreCollection<any> = this.db.collection('events');
 
     public boardMembersList: Observable<any[]>;
     public newsList: Observable<any[]>;
+    public sermonList: Observable<any[]>;
   selectedItem:any='Select';
   boardMemberInfo:any={};
   sermonInfo:any={};
@@ -39,6 +40,7 @@ export class ContentManagerComponent implements OnInit {
 
     this.boardMembersList = db.collection('/boardmembers',ref => ref.orderBy('priority')).valueChanges();
     this.newsList = db.collection('/events',ref => ref.orderBy('newsId')).valueChanges();
+    this.sermonList = db.collection('/sermons',ref => ref.orderBy('sermonid')).valueChanges();
   
    }
 
@@ -68,9 +70,11 @@ export class ContentManagerComponent implements OnInit {
   saveSermons(){
   
  
-    this.sermonInfo.sermonid=new Date().getTime().toString();
+    
+    this.sermonInfo.sermonid=  this.sermonInfo.sermonid? this.sermonInfo.sermonid: new Date().getTime().toString();
+  
     console.log(this.sermonInfo);
-    this.sermons.doc(new Date().getTime().toString()).set( this.sermonInfo)
+    this.sermonsCollection.doc(this.sermonInfo.sermonid).set( this.sermonInfo)
       .catch((err) => {
       console.log(err);
     });
@@ -120,6 +124,19 @@ deleteNews(news){
   var isDelete=confirm('Are you sure you want to dlete');
   if(isDelete){
   this.newsCollection.doc(news.newsId).delete()
+    .catch((err) => {
+    console.log(err);
+  })
+}
+}
+
+editSermons(sermons){
+  this.sermonInfo=sermons;
+}
+deleteSermon(sermon){
+  var isDelete=confirm('Are you sure you want to dlete');
+  if(isDelete){
+  this.sermonsCollection.doc(sermon.sermonid).delete()
     .catch((err) => {
     console.log(err);
   })

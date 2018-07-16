@@ -1695,7 +1695,7 @@ img:hover, .news-img:hover{
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
   perspective: 1000px;
-  transform: scale(1.2);
+  transform: scale(1);
   transition: all .5s;
 }
 .slide-subtitle-cont{
@@ -1727,4 +1727,11 @@ img:hover, .news-img:hover{
 	-moz-animation-delay: 5s;
 	-ms-animation-delay: 5s;
 	animation-delay: 5s;
+}
+p{
+  text-align: justify;
+}
+.vertical-center{
+  margin-top: auto;
+  margin-bottom: auto;
 }

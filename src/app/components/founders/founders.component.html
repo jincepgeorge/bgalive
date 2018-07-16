@@ -8,23 +8,19 @@
   <div class="fullwidth-block">
     <div class="container" *ngFor="let item of founders | async">
                     <h2 class="section-title">Bethel Gospel Assembly Founders</h2>
-      <div class="row">
-                      <div class="content col-md-5">
+      <div class="row founder-container">
+                      <div class="content col-md-5 vertical-center">
                         <img src="assets/images/{{item.photo}}" alt="" class="founder-img"></div>
-        <div class="content col-md-7">
+        <div class="content col-md-7 vertical-center">
         
-          <ul class="seremon-list large">
-            <li >
+        
             
               <div class="seremon-detail">
                 <h3 class="seremon-title"><a href="#">{{item.names}}</a></h3>
                 
                 <p>{{item.description}}</p>
               </div>
-            </li>
-            
-          </ul>
-
+           
           
         </div>
       

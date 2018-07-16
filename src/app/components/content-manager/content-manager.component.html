@@ -318,6 +318,17 @@
              </div>
           </div>
        </form>
+       <div class="container fullwidth-block">
+            <div class="list-group" *ngFor="let sermon of sermonList | async">
+               <a class="list-group-item clearfix">
+               <span class="glyphicon glyphicon-file"></span>
+               {{sermon.title}}
+               <span class="pull-right">
+               <button (click)="editSermons(sermon)" class="btn btn-xs btn-info">Edit</button>
+               <button class="btn btn-xs btn-info" (click)="deleteSermon(sermon)" >Delete</button>
+               </span>
+               </a>
+            </div> </div>
     </div>
     <div class="news" [hidden]="selectedItem!='News'" >
        <form class="form-horizontal" role="form" method="POST" action="/Save">
