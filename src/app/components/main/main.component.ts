@@ -15,6 +15,7 @@ export class MainComponent implements OnInit {
   public upcomingevents: Observable<any[]>;
   public news: Observable<any[]>;
   public sermons: Observable<any[]>;
+  images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   constructor(db: AngularFirestore,
     private spinnerService: Ng4LoadingSpinnerService) { 
       this.spinnerService.show();
@@ -32,6 +33,7 @@ export class MainComponent implements OnInit {
        console.log(result);
        this.spinnerService.hide();
      });
+     
   }
 
   ngOnInit() {

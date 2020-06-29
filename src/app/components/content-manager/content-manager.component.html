@@ -70,6 +70,27 @@
                 </div>
              </div>
              <div class="row">
+               <div class="col-md-3 col-xs-3 field-label-responsive">
+                  <label for="password">Category</label>
+               </div>
+               <div class="col-md-6 col-xs-9">
+                  <div class="form-group has-danger">
+                     <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+
+                     <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        <div class="selectWrapper selectWrapper-category">
+                           <select [(ngModel)]="boardMemberInfo.category"  name="category" >
+                              <option >Select</option>
+                              <option >General</option>
+                              <option >Christ Soldiers</option>
+                              <option >Sunday School</option>
+                              <option >BWF</option>
+                           </select>
+                        </div>
+                  </div>  </div>
+               </div>
+            </div>
+             <div class="row">
                 <div class="col-md-3 col-xs-3 field-label-responsive">
                    <label for="password">Position</label>
                 </div>
@@ -169,7 +190,7 @@
        <div class="row">
        <div class="col-md-3 col-xs-3"></div>
        <div class="col-md-6 col-xs-9">
-       <button type="submit" (click)="uploadImageAndSaveData()" class="btn btn-success"><i class="fa fa-user-plus"></i> Save</button>
+       <button type="submit" (click)="uploadImageAndSaveData('board')" class="btn btn-success"><i class="fa fa-user-plus"></i> Save</button>
        </div>
        </div>
        </form>
@@ -314,7 +335,7 @@
           <div class="row">
              <div class="col-md-3 col-xs-3"></div>
              <div class="col-md-6 col-xs-9">
-                <button type="submit" (click)="uploadImageAndSaveData()" class="btn btn-success"><i class="fa fa-user-plus"></i> Save</button>
+                <button type="submit" (click)="uploadImageAndSaveData('sermon')" class="btn btn-success"><i class="fa fa-user-plus"></i> Save</button>
              </div>
           </div>
        </form>

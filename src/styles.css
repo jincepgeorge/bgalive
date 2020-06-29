@@ -1286,9 +1286,12 @@
          background: url(assets/images/pagination-current.png); }
  
  .page-head {
-   background-size: cover;
-   padding: 50px;
-   text-align: center; }
+  background-size: cover;
+  padding: 50px;
+  text-align: center;
+  filter: grayscale(100%);
+  background-blend-mode: saturation;
+  background-position: bottom;}
    .page-head .page-title {
      font-weight: 100;
      font-size: 72px;

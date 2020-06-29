@@ -27,6 +27,7 @@ import { DetailComponent } from './components/detail/detail.component';
 import { ContentManagerComponent } from './components/content-manager/content-manager.component';
 // import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
+import { VideosComponent } from './components/videos/videos.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,9 @@ import { FormsModule } from '@angular/forms';
     ContactComponent,
     SidebarContentComponent,
     DetailComponent,
-    ContentManagerComponent
+    ContentManagerComponent,
+    VideosComponent,
+    
   ],
   imports: [
     BrowserModule,

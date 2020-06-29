@@ -59,12 +59,26 @@ export class ContentManagerComponent implements OnInit {
     this.boardMemberInfo={};
    
   }
-  uploadImageAndSaveData(){
+  uploadImageAndSaveData(type){
+    if((this.boardMemberInfo.photo && !this.uploadCntrl) || (!this.boardMemberInfo.photo && this.uploadCntrl.target.files.length===0)){
+    switch(type){
+      case 'board':
+     
+      this.saveBoardMembers();
+      break;
+      case 'sermon':
+    
+      this.saveSermons();
+      break;
+  
+    }
+  }else{
     this.uploadImages();
 
     this.uploadProgress.subscribe(result => {
       this.uploadProgressValue=result;
     });
+  }
   
   }
   saveSermons(){

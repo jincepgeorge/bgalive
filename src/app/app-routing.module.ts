@@ -11,6 +11,7 @@ import { MinistriesComponent } from './components/ministries/ministries.componen
 import { ContactComponent } from './components/contact/contact.component';
 import { DetailComponent } from './components/detail/detail.component';
 import { ContentManagerComponent } from './components/content-manager/content-manager.component';
+import { VideosComponent } from './components/videos/videos.component';
 
 const routes: Routes = [
   
@@ -40,6 +41,10 @@ const routes: Routes = [
         },{
           path:'gallery',
           component: GalleryComponent,
+        },
+        {
+          path:'videos',
+          component: VideosComponent,
         }
         ,{
             path:'ministries',

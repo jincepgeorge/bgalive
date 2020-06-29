@@ -8,7 +8,8 @@
     <div class="container">
       <div class="row">
         <div class="content col-md-8">
-          <h2 class="section-title">Meet the Borad Members</h2>
+          <div class="board-container">
+          <h2 class="section-title">GENERAL EXECUTIVES 2020-2021</h2>
           <div class="row">
          
             <div class="family" *ngFor="let member of boardMembers | async">
@@ -20,8 +21,53 @@
 
           
           </div>
-          
         </div>
+        <div class="board-container">
+            <h2 class="section-title">CHRIST SOLDIERS EXECUTIVES 2020-2021</h2>
+            <div class="row">
+           
+              <div class="family" *ngFor="let member of csboardMembers | async">
+                  <div [ngStyle]="{'background-image': 'url(' + member.photo + ')'}"  class="news-img"></div>
+  <!--										<img src="assets/images/rajeev.jpg" alt="" class="family-image">-->
+  <h3 class="family-name">{{member.name}}</h3>
+  <small>{{member.position}}</small>
+  </div>
+  
+            
+            </div>
+          </div>
+          <div class="board-container">
+            <h2 class="section-title">SUNDAY SCHOOL EXECUTES 2020-2021</h2>
+            <div class="row">
+           
+              <div class="family" *ngFor="let member of ssboardMembers | async">
+                  <div [ngStyle]="{'background-image': 'url(' + member.photo + ')'}"  class="news-img"></div>
+  <!--										<img src="assets/images/rajeev.jpg" alt="" class="family-image">-->
+  <h3 class="family-name">{{member.name}}</h3>
+  <small>{{member.position}}</small>
+  </div>
+  
+            
+            </div>
+          </div>
+
+          <div class="board-container">
+            <h2 class="section-title">WOMENS FELLOWSHIP EXECUTES 2020-2021</h2>
+            <div class="row">
+           
+              <div class="family" *ngFor="let member of bwfboardMembers | async">
+                  <div [ngStyle]="{'background-image': 'url(' + member.photo + ')'}"  class="news-img"></div>
+  <!--										<img src="assets/images/rajeev.jpg" alt="" class="family-image">-->
+  <h3 class="family-name">{{member.name}}</h3>
+  <small>{{member.position}}</small>
+  </div>
+  
+            
+            </div>
+          </div>
+        </div>
+
+     
         <div class="sidebar col-md-3 col-md-offset-1">
           <app-sidebar-content></app-sidebar-content>
         </div>
